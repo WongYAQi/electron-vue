@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config config/webpack.config.js",
-    "server": "node server.js",
-    "start": "electron ."
+    "dev": "webpack-dev-server --config config/webpack.config.js",
+    "hot": "",
+    "server": "node ./build/electron-hot-runner.js",
+    "start": "electron ./build/electron-runner.js"
   },
   "author": "",
   "license": "ISC",

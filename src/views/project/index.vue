@@ -7,7 +7,7 @@
         </template>
       </el-menu-item>
     </el-menu>
-    <span>456</span>
+    <span>123</span>
   </div>
 </template>
 <script>
