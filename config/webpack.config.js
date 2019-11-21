@@ -3,7 +3,8 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 function resolve (dir) {
-  return path.join(__dirname, '..', dir)
+  let t = path.join(__dirname,'..', dir)
+  return t
 }
 module.exports = {
   mode: 'development',
@@ -16,7 +17,8 @@ module.exports = {
     publicPath: '/'
   },
   devServer: {
-    hot: true
+    hot: true,
+    port: '9972'
   },
   resolve: {
     alias: {

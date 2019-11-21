@@ -1,12 +1,12 @@
 <template>
-  <project></project>
+  <div>
+    <el-menu>
+    </el-menu>
+    <router-view />
+  </div>
 </template>
 <script>
-import Project from './views/project/index.vue'
 export default {
-  components: {
-    Project
-  }
 }
 </script>
 <style scoped>

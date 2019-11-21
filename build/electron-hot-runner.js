@@ -1,6 +1,7 @@
 const { spawn, exec } = require('child_process') // 衍生子进程
 
-const child = exec('npm run dev')
+
+const child = exec('npm run dev --color')
 const child2 = exec('npm run start')
 
 child.stdout.on('data', (data) => {
