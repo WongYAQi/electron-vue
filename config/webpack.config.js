@@ -3,7 +3,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 function resolve (dir) {
-  let t = path.join(__dirname,'..', dir)
+  let t = path.join(__dirname, '..', dir)
   return t
 }
 module.exports = {
@@ -21,6 +21,7 @@ module.exports = {
     port: '9972'
   },
   resolve: {
+    extensions: ['vue', 'js', 'json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src')
@@ -31,6 +32,10 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['vue-style-loader', 'css-loader']
+      },
+      {
+        test: /\.less$/,
+        use: ['style-loader', 'css-loader', 'less-loader']
       },
       {
         test: /\.vue$/,
@@ -47,8 +52,6 @@ module.exports = {
       title: 'Output Management',
       template: './index.html'
     }),
-    new VueLoaderPlugin(),
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new VueLoaderPlugin()
   ]
 };
