@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node ./build/test.js",
     "dev": "webpack-dev-server --config config/webpack.config.js",
     "hot": "",
     "server": "node ./build/electron-hot-runner.js",
@@ -34,6 +34,10 @@
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-middleware": "^3.7.2",
-    "webpack-dev-server": "^3.9.0"
+    "webpack-dev-server": "^3.9.0",
+    "ws": "^7.2.0",
+    "xterm": "^4.2.0-vscode1",
+    "xterm-addon-fit": "^0.3.0",
+    "xterm-addon-web-links": "^0.2.1"
   }
 }

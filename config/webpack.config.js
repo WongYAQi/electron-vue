@@ -21,10 +21,11 @@ module.exports = {
     port: '9972'
   },
   resolve: {
-    extensions: ['vue', 'js', 'json'],
+    extensions: ['.vue', '.js', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src')
+      '@': resolve('src'),
+      '@root': resolve('/')
     }
   },
   module: {

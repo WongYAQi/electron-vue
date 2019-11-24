@@ -3,7 +3,13 @@ const { spawn, exec } = require('child_process') // 衍生子进程
 
 const child = exec('npm run dev --color')
 const child2 = exec('npm run start')
+const child3 = exec('node websocket-server.js', {
+    cwd: './build'
+})
 
+child3.stdout.on('data', (data) => {
+    console.log(data)
+})
 child.stdout.on('data', (data) => {
     console.log('stdout: ' + data);
     child2.stdout.on('data', data => {
