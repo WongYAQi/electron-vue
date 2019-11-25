@@ -18,7 +18,10 @@ module.exports = {
   },
   devServer: {
     hot: true,
-    port: '9972'
+    port: '9972',
+    proxy: {
+      '/': 'http://localhost:3001'
+    }
   },
   resolve: {
     extensions: ['.vue', '.js', '.json'],

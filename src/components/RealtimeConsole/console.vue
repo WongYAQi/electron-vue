@@ -32,7 +32,7 @@ export default {
             let ws = new WebSocket('ws://localhost:3000/test')
             ws.onmessage = message => {
                 console.log('in auth', message)
-                this.terminal.write(message.data + '\n')
+                this.terminal.write('\n' + message.data + '\n')
             }
             ws.onopen = event => {
                 ws.send(this.target)

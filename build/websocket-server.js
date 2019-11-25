@@ -2,10 +2,7 @@
  * Express 服务，用于发送websocket等
  */
 const { exec,spawn, fork } = require('child_process')
-const app = require('express')()
-const server = require('http').Server(app)
 const WebSocket = require('ws')
-const iconv = require('iconv-lite')
 const WebSocketServer = WebSocket.Server
 
 const wss = new WebSocketServer({

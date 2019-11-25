@@ -21,20 +21,28 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
       form: {
+        address: '',
         proxyAddress: ''
       }
     }
+  },
+  created () {
+
   },
   methods: {
     restartSystem () {
 
     },
     changeAddress () {
-      
+      axios.post('/coopwire')
+        .then(res => {
+          console.log('res is', res)
+        })
     }
   }
 }
