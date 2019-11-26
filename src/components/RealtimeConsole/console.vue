@@ -1,6 +1,8 @@
 <template>
     <div class='c-container'>
-        <el-button @click='start'>测试</el-button>
+        <div class='btnGroup'>
+            <el-button @click='start' type='primary'>启动</el-button>
+        </div>
         <div ref='terminal' id='terminal' class='content'></div>
     </div>
 </template>
@@ -8,9 +10,11 @@
 import { Terminal } from 'xterm'
 import { WebLinksAddon } from 'xterm-addon-web-links';
 import { FitAddon } from 'xterm-addon-fit'
+import EventBus from '@/components/EventBus/EventBus'
 export default {
     props: {
-        target: String
+        target: String,
+        id: String
     },
     data () {
         return {
@@ -18,12 +22,14 @@ export default {
             terminal: {}
         }
     },
+    created () {
+    },
     mounted () {
         const terminal = this.terminal = new Terminal()
         const fitAddon = new FitAddon()
         terminal.loadAddon(new WebLinksAddon())
         terminal.loadAddon(fitAddon)
-        terminal.open(this.$refs.terminal)
+        terminal.open(document.getElementById('terminal'))
         fitAddon.fit()
         terminal.write('Hello')
     },
@@ -31,7 +37,6 @@ export default {
         start () {
             let ws = new WebSocket('ws://localhost:3000/test')
             ws.onmessage = message => {
-                console.log('in auth', message)
                 this.terminal.write('\n' + message.data + '\n')
             }
             ws.onopen = event => {
@@ -44,10 +49,8 @@ export default {
 <style lang='less' scoped>
 .c-container{
     height: 450px;
-    border: 1px solid black;
-    background-color: rgba(0,0,0,0.1)
 }
-.content{
-
+.btnGroup{
+    margin-bottom: 18px;
 }
 </style>

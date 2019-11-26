@@ -1,5 +1,5 @@
 <template>
-  <div class='inner-container'>
+  <div class='projectCoopwire-container'>
     <el-card class='group'>
       <div slot='header'>
         <span>启动</span>

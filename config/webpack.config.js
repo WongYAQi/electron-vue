@@ -23,6 +23,7 @@ module.exports = {
       '/': 'http://localhost:3001'
     }
   },
+  devtool: 'source-map',
   resolve: {
     extensions: ['.vue', '.js', '.json'],
     alias: {
