@@ -18,7 +18,7 @@ import axios from 'axios'
 import EventBus from '@/components/EventBus/EventBus'
 export default {
   components: {
-    CoopwireIndex, MyConsole
+    CoopwireIndex, 'AuthConsole' : MyConsole, 'PlatformConsole': MyConsole, 'EnterpriseConsole': MyConsole
   },
   data () {
     return {
@@ -48,16 +48,16 @@ export default {
       if (item.name === 'all') {
         this.componentName = 'CoopwireIndex'
       } else if (item.name === 'auth') {
-        this.componentName = 'MyConsole'
-        this.componentBind = { id: '1' }
+        this.componentName = 'AuthConsole'
+        this.componentBind = { id: '1', target: 'coopwire/auth', command: 'dev:coopwire-auth' }
         EventBus.$emit('showConsole', '1')
       } else if (item.name === 'platform') {
-        this.componentName = 'MyConsole'
-        this.componentBind = { id: '2' }
+        this.componentName = 'PlatformConsole'
+        this.componentBind = { id: '2', target: 'coopwire/platform', command: 'dev:coopwire-platform' }
         EventBus.$emit('showConsole', '2')
       } else if (item.name === 'enterprise') {
-        this.componentName = 'MyConsole'
-        this.componentBind = { id: '3' }
+        this.componentName = 'EnterpriseConsole'
+        this.componentBind = { id: '3', target: 'coopwire/enterprise', command: 'dev:coopwire-enterprise' }
         EventBus.$emit('showConsole', '3')
       }
     }
