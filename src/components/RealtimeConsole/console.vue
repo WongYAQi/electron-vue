@@ -44,7 +44,7 @@ export default {
         console.log(message);
         if (message.data.startsWith('<s>')) {
           // <s>开头，要删除此行数据
-
+          // 用markers数组来继续line，判断<s>的行数，进行删除
         }
         this.index++
         this.terminal.addMarker(this.index)
