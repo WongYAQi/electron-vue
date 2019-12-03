@@ -11,6 +11,7 @@ import { Terminal } from "xterm";
 import { WebLinksAddon } from "xterm-addon-web-links";
 import { FitAddon } from "xterm-addon-fit";
 import EventBus from "@/components/EventBus/EventBus";
+let terminal
 export default {
   props: {
     target: String,
@@ -26,29 +27,39 @@ export default {
   },
   created() {},
   mounted() {
-    const terminal = (this.terminal = new Terminal({
+    terminal = new Terminal({
       convertEol: true
-    }));
+    });
     window.terminal = terminal
 
     const fitAddon = new FitAddon();
     terminal.loadAddon(new WebLinksAddon());
-    terminal.loadAddon(fitAddon);
+    // terminal.loadAddon(fitAddon);
     terminal.open(document.getElementById("terminal"));
-    fitAddon.fit();
+    // fitAddon.fit();
   },
   methods: {
     start() {
       let ws = new WebSocket(`ws://localhost:3001/coopwire/dev`);
       ws.onmessage = message => {
-        console.log(message);
-        if (message.data.startsWith('<s>')) {
-          // <s>开头，要删除此行数据
-          // 用markers数组来继续line，判断<s>的行数，进行删除
-        }
+        let index = Math.ceil(Math.random() * 100000000)
         this.index++
-        this.terminal.addMarker(this.index)
-        this.terminal.write(message.data);
+        let start = terminal.addMarker(this.index)
+        let reg = new RegExp(/^\<s\>/g)
+        let flag = reg.test(message.data)
+        index = Math.ceil(Math.random() * 100000000)
+        this.index++
+        terminal.write(message.data);
+        let second = terminal.addMarker(this.index)
+        if (flag) {
+          if (start && second) {
+            setTimeout(() => {
+              console.log(start, second)
+              terminal.selectLines(0 , 12)
+              terminal.clearSelection()
+            }, 100)
+          }
+        }
       };
       ws.onopen = event => {
         ws.send(this.command);
