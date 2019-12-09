@@ -18,7 +18,10 @@ import axios from 'axios'
 import EventBus from '@/components/EventBus/EventBus'
 export default {
   components: {
-    CoopwireIndex, 'AuthConsole' : MyConsole, 'PlatformConsole': MyConsole, 'EnterpriseConsole': MyConsole
+    CoopwireIndex,
+    'AuthConsole' : MyConsole,
+    'PlatformConsole':MyConsole,
+    'EnterpriseConsole': MyConsole
   },
   data () {
     return {
@@ -49,15 +52,30 @@ export default {
         this.componentName = 'CoopwireIndex'
       } else if (item.name === 'auth') {
         this.componentName = 'AuthConsole'
-        this.componentBind = { id: '1', target: 'coopwire/auth', command: 'dev:coopwire-auth' }
+        this.componentBind = {
+          id: '1',
+          target: 'auth',
+          command: 'dev:coopwire-auth',
+          key: 'con1'
+        }
         EventBus.$emit('showConsole', '1')
       } else if (item.name === 'platform') {
         this.componentName = 'PlatformConsole'
-        this.componentBind = { id: '2', target: 'coopwire/platform', command: 'dev:coopwire-platform' }
+        this.componentBind = {
+          id: '2',
+          target: 'platform',
+          command: 'dev:coopwire-platform',
+          key: 'con2'
+        }
         EventBus.$emit('showConsole', '2')
       } else if (item.name === 'enterprise') {
         this.componentName = 'EnterpriseConsole'
-        this.componentBind = { id: '3', target: 'coopwire/enterprise', command: 'dev:coopwire-enterprise' }
+        this.componentBind = {
+          id: '3',
+          target: 'enterprise',
+          command: 'dev:coopwire-enterprise',
+          key: 'con3'
+        }
         EventBus.$emit('showConsole', '3')
       }
     }

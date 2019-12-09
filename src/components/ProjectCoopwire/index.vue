@@ -52,7 +52,4 @@ export default {
   .inner-container{
     border: 1px solid rgb(221, 223, 222);
   }
-  .form{
-    width: 50%;
-  }
 </style>

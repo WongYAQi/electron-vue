@@ -3,7 +3,7 @@
         <div class='btnGroup'>
             <el-button @click='start' type='primary'>启动</el-button>
         </div>
-        <div ref='terminal' id='terminal' class='content'></div>
+        <div ref='terminal' :id='"terminal" + id' class='content'></div>
     </div>
 </template>
 <script>
@@ -11,7 +11,6 @@ import { Terminal } from "xterm";
 import { WebLinksAddon } from "xterm-addon-web-links";
 import { FitAddon } from "xterm-addon-fit";
 import EventBus from "@/components/EventBus/EventBus";
-let terminal
 export default {
   props: {
     target: String,
@@ -27,39 +26,23 @@ export default {
   },
   created() {},
   mounted() {
-    terminal = new Terminal({
+    this.terminal = new Terminal({
       convertEol: true
     });
-    window.terminal = terminal
+    window.terminal = this.terminal
 
     const fitAddon = new FitAddon();
-    terminal.loadAddon(new WebLinksAddon());
+    this.terminal.loadAddon(new WebLinksAddon());
     // terminal.loadAddon(fitAddon);
-    terminal.open(document.getElementById("terminal"));
+    this.terminal.open(document.getElementById("terminal" + this.id));
     // fitAddon.fit();
   },
   methods: {
     start() {
-      let ws = new WebSocket(`ws://localhost:3001/coopwire/dev`);
+      let ws = new WebSocket(`ws://localhost:3001/coopwire/dev/${this.target}`);
       ws.onmessage = message => {
-        let index = Math.ceil(Math.random() * 100000000)
-        this.index++
-        let start = terminal.addMarker(this.index)
-        let reg = new RegExp(/^\<s\>/g)
-        let flag = reg.test(message.data)
-        index = Math.ceil(Math.random() * 100000000)
-        this.index++
-        terminal.write(message.data);
-        let second = terminal.addMarker(this.index)
-        if (flag) {
-          if (start && second) {
-            setTimeout(() => {
-              console.log(start, second)
-              terminal.selectLines(0 , 12)
-              terminal.clearSelection()
-            }, 100)
-          }
-        }
+        this.terminal.clear()
+        this.terminal.write(message.data);
       };
       ws.onopen = event => {
         ws.send(this.command);

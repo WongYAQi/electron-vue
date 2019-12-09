@@ -11,9 +11,15 @@ app.get('/coopwire', (req, res) => {
     res.send(temp)
 })
 
-app.ws('/coopwire/dev', function(ws, req){
+app.ws('/coopwire/dev/:platform', function(ws, req){
+    console.log(req.params)
     ws.on('message', msg => {
-        let index = msg.includes('auth') ? 0 : msg.includes('platform') ? 1 : msg.includes('enterprise') ? 2 : -1
+        let index = req.params.platform.includes('auth')
+            ? 0
+            : req.params.platform.includes('platform')
+                ? 1
+                : req.params.platform.includes('enterprise')
+                    ? 2 : -1
         if (index < 0) return
         let subprocess = arrayProcess[index] 
         if (msg.startsWith('dev')) {
