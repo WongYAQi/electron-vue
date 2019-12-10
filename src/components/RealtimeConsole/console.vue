@@ -10,7 +10,7 @@
 import { Terminal } from "xterm";
 import { WebLinksAddon } from "xterm-addon-web-links";
 import { FitAddon } from "xterm-addon-fit";
-import EventBus from "@/components/EventBus/EventBus";
+import EventBus from "@/components/EventBus/EventBus.ts";
 export default {
   props: {
     target: String,

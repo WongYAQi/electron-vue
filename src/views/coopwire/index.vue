@@ -11,32 +11,32 @@
     </keep-alive>
   </div>
 </template>
-<script>
-import MyConsole from '@/components/RealtimeConsole/console'
-import CoopwireIndex from '@/components/ProjectCoopwire/index'
+<script lang='ts'>
+import Vue from 'vue'
+import Component from 'vue-class-component'
+import MyConsole from '../../components/RealtimeConsole/console.vue'
+import CoopwireIndex from '@/components/ProjectCoopwire/index.vue'
+import A from '@/App.vue'
 import axios from 'axios'
-import EventBus from '@/components/EventBus/EventBus'
-export default {
-  components: {
-    CoopwireIndex,
+import EventBus from '@/components/EventBus/EventBus.ts'
+@Component
+export default class coop extends Vue {
+  components: object = {
+    'CoopwireIndex': CoopwireIndex,
     'AuthConsole' : MyConsole,
     'PlatformConsole':MyConsole,
     'EnterpriseConsole': MyConsole
-  },
-  data () {
-    return {
-      activeName: 'all',
-      headers: [
-        { label: '序章', value: '1' },
-        { label: '登录系统', value: '2' },
-        { label: '平台系统', value: '3' },
-        { label: '企业系统', value: '4' }
-      ],
-      componentName: '',
-      componentBind: {},
-      loading: false
-    }
-  },
+  }
+  activeName: string = 'all'
+  headers: Array<object> = [
+    { label: '序章', value: '1' },
+    { label: '登录系统', value: '2' },
+    { label: '平台系统', value: '3' },
+    { label: '企业系统', value: '4' }
+  ]
+  componentName: string = ''
+  componentBind: object = {}
+  loading: boolean = false
   created () {
     this.componentName = 'CoopwireIndex'
     this.loading = true
@@ -45,39 +45,37 @@ export default {
     }).finally(() => {
       this.loading = false
     })
-  },
-  methods: {
-    click (item, event) {
-      if (item.name === 'all') {
-        this.componentName = 'CoopwireIndex'
-      } else if (item.name === 'auth') {
-        this.componentName = 'AuthConsole'
-        this.componentBind = {
-          id: '1',
-          target: 'auth',
-          command: 'dev:coopwire-auth',
-          key: 'con1'
-        }
-        EventBus.$emit('showConsole', '1')
-      } else if (item.name === 'platform') {
-        this.componentName = 'PlatformConsole'
-        this.componentBind = {
-          id: '2',
-          target: 'platform',
-          command: 'dev:coopwire-platform',
-          key: 'con2'
-        }
-        EventBus.$emit('showConsole', '2')
-      } else if (item.name === 'enterprise') {
-        this.componentName = 'EnterpriseConsole'
-        this.componentBind = {
-          id: '3',
-          target: 'enterprise',
-          command: 'dev:coopwire-enterprise',
-          key: 'con3'
-        }
-        EventBus.$emit('showConsole', '3')
+  }
+  click (item: any, event: any) {
+    if (item.name === 'all') {
+      this.componentName = 'CoopwireIndex'
+    } else if (item.name === 'auth') {
+      this.componentName = 'AuthConsole'
+      this.componentBind = {
+        id: '1',
+        target: 'auth',
+        command: 'dev:coopwire-auth',
+        key: 'con1'
       }
+      EventBus.$emit('showConsole', '1')
+    } else if (item.name === 'platform') {
+      this.componentName = 'PlatformConsole'
+      this.componentBind = {
+        id: '2',
+        target: 'platform',
+        command: 'dev:coopwire-platform',
+        key: 'con2'
+      }
+      EventBus.$emit('showConsole', '2')
+    } else if (item.name === 'enterprise') {
+      this.componentName = 'EnterpriseConsole'
+      this.componentBind = {
+        id: '3',
+        target: 'enterprise',
+        command: 'dev:coopwire-enterprise',
+        key: 'con3'
+      }
+      EventBus.$emit('showConsole', '3')
     }
   }
 }
