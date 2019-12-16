@@ -6,9 +6,9 @@
   "scripts": {
     "test": "node ./build/test.js",
     "dev": "webpack-dev-server --config config/webpack.config.js",
-    "hot": "",
     "server": "node ./build/electron-hot-runner.js",
-    "start": "electron ./build/electron-runner.js"
+    "start": "electron ./build/electron-runner.js",
+    "express": "node ./express/app.js"
   },
   "author": "",
   "license": "ISC",
