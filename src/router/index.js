@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Coopwire from '@/views/coopwire/index.vue'
+import Mock from '@/views/Mock/index.vue'
 Vue.use(VueRouter)
 
 export default new VueRouter({
+  history: true,
   routes: [
     {
       path: '/',
@@ -15,6 +17,10 @@ export default new VueRouter({
       path: '/coopwire',
       name: 'Coopwire',
       component: Coopwire
+    }, {
+      path: '/mock',
+      name: 'Mock',
+      component: Mock
     }
   ]
 })

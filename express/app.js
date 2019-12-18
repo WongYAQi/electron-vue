@@ -6,13 +6,16 @@ const adapter = new FileSync('express/data/coopwire.json')
 const Dev = require('../lib/Dev')
 const db = low(adapter)
 const arrayProcess = new Array(3)
+const adapterMock = new FileSync('express/data/mock.json')
+const dbM = low(adapterMock)
+const mockapp = require('./mockapp.js')
+const _ = require('lodash')
 app.get('/coopwire', (req, res) => {
     let temp = db.read()
     res.send(temp)
 })
 
 app.ws('/coopwire/dev/:platform', function(ws, req){
-    console.log(req.params)
     ws.on('message', msg => {
         let index = req.params.platform.includes('auth')
             ? 0
@@ -40,4 +43,24 @@ app.post('/coopwire', (req, res) => {
     res.send(db.read())
 })
 
+app.post('/mock/:port/start', (req, res) => {
+    db.set('mockport', req.params.port)
+        .write()
+    let result = mockapp.listen(req.params.port)
+    res.send(result)
+})
+
+/**
+获取lowdb的存储数据 */
+app.get('/lowdb/:dictName', (req, res) => {
+    let result = db.get(req.params.dictName).value()
+    res.send(result)
+})
+
+/**
+获取所有接口列表 */
+app.get('/mock/api', (req, res) => {
+    let result = _.keys(dbM.read())
+    res.send(dbM.read())
+})
 app.listen('3001')

@@ -1,16 +1,19 @@
 <template>
   <div class='container'>
     <app-menu class='app-menu'></app-menu>
-    <router-view class='app-content'/>
+    <div class='app-content'>
+      <router-view />
+    </div>
   </div>
 </template>
-<script>
+<script lang='ts'>
+import Vue from 'vue'
 import AppMenu from '@/components/Menu/Menu.vue'
-export default {
+export default Vue.extend({
   components: {
     AppMenu
   }
-}
+})
 </script>
 <style lang='less' scoped>
 .container{

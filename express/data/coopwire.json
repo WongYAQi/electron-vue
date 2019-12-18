@@ -1,4 +1,5 @@
 {
   "address": "D:/CodeProgram/coopwire-frontend/web",
-  "proxyAddress": ""
+  "proxyAddress": "",
+  "mockport": "3002"
 }

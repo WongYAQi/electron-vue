@@ -13,7 +13,7 @@
 </template>
 <script lang='ts'>
 import Vue from 'vue'
-import MyConsole from '../../components/RealtimeConsole/console.vue'
+import MyConsole from '@/components/RealtimeConsole/console.vue'
 import CoopwireIndex from '@/components/ProjectCoopwire/index.vue'
 import axios from 'axios'
 import EventBus from '@/components/EventBus/EventBus.ts'

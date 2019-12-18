@@ -3,6 +3,7 @@ const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 const adapterMock = new FileSync('express/data/mock.json')
 const dbM = low(adapterMock)
+const _ = require('lodash')
 
 /** 
 Mock中间件
@@ -12,13 +13,17 @@ Mock中间件
 */
 function mockStorage (req, res, next) {
     let oUrl = req.originalUrl
-    // 判断是否存在对应路由
-    if(!dbM.has(oUrl)) {
+    let hasData = _.has(dbM, oUrl)
+    if (!hasData) {
         dbM.defaults({ [oUrl]: {} })
             .write()
+    } else {
     }
     next()
 }
 
 app.use(mockStorage)
-app.listen()
+app.get('*', (req, res) => {
+    res.send(true)
+})
+module.exports = app
