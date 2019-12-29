@@ -17,6 +17,7 @@
       "./types",
       "./node_modules/vue/types"
     ],
+    "resolveJsonModule": true,
     "experimentalDecorators": true
   }
 }

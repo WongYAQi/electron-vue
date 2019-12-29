@@ -13,6 +13,9 @@ Mock中间件
 */
 function mockStorage (req, res, next) {
     let oUrl = req.originalUrl
+    if (!req.xhr) {
+        next()
+    }
     let hasData = _.has(dbM, oUrl)
     if (!hasData) {
         dbM.defaults({ [oUrl]: {} })

@@ -1,0 +1,12 @@
+{
+    "children": [
+        {
+            "name": "coopwire",
+            "id": "coopwire"
+        },
+        {
+            "name": "mock",
+            "id": "mock"
+        }
+    ]
+}

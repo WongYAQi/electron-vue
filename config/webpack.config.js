@@ -19,11 +19,11 @@ module.exports = {
   devServer: {
     hot: true,
     port: '9972',
-    proxy: {
-      '/': 'http://localhost:3001'
-    }
+    // proxy: {
+    //   '/': 'http://localhost:3001'
+    // }
   },
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
   resolve: {
     extensions: ['.vue', '.js', '.json'],
     alias: {
@@ -34,12 +34,6 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.ts$/,
-        exclude: /node_modules/,
-        enforce: 'pre',
-        loader: 'tslint-loader'
-      },
       {
         test: /\.tsx?$/,
         loader: 'ts-loader',
@@ -71,6 +65,7 @@ module.exports = {
       title: 'Output Management',
       template: './index.html'
     }),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ]
-};
+}

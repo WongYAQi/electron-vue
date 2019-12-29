@@ -11,13 +11,12 @@
     </keep-alive>
   </div>
 </template>
-<script lang='ts'>
-import Vue from 'vue'
+<script>
 import MyConsole from '@/components/RealtimeConsole/console.vue'
 import CoopwireIndex from '@/components/ProjectCoopwire/index.vue'
 import axios from 'axios'
 import EventBus from '@/components/EventBus/EventBus.ts'
-export default Vue.extend({
+export default {
   components: {
     'CoopwireIndex': CoopwireIndex,
     'AuthConsole' : MyConsole,
@@ -38,10 +37,10 @@ export default Vue.extend({
       loading:false
     }
   },
-  created (): void {
+  created () {
     this.componentName = 'CoopwireIndex'
     this.loading = true
-    axios.get('/coopwire').then((res: any) => {
+    axios.get('/coopwire').then((res) => {
       EventBus.$emit('defaultCoopwire')
       return res
     }).finally(() => {
@@ -49,7 +48,7 @@ export default Vue.extend({
     })
   },
   methods: {
-    click (item: any, event: any) {
+    click (item, event) {
       if (item.name === 'all') {
         this.componentName = 'CoopwireIndex'
       } else if (item.name === 'auth') {
@@ -82,7 +81,7 @@ export default Vue.extend({
       }
     }
   }
-})
+}
 </script>
 <style lang='less' scoped>
 .inner-container{

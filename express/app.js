@@ -42,14 +42,6 @@ app.post('/coopwire', (req, res) => {
         .write()
     res.send(db.read())
 })
-
-app.post('/mock/:port/start', (req, res) => {
-    db.set('mockport', req.params.port)
-        .write()
-    let result = mockapp.listen(req.params.port)
-    res.send(result)
-})
-
 /**
 获取lowdb的存储数据 */
 app.get('/lowdb/:dictName', (req, res) => {
@@ -60,7 +52,20 @@ app.get('/lowdb/:dictName', (req, res) => {
 /**
 获取所有接口列表 */
 app.get('/mock/api', (req, res) => {
-    let result = _.keys(dbM.read())
-    res.send(dbM.read())
+    let result = _.keys(dbM.getState())
+    res.send(dbM.getState())
 })
+app.post('/mock/:port/start', (req, res) => {
+    db.set('mockport', req.params.port)
+        .write()
+    let result = mockapp.listen(req.params.port)
+    res.send(result)
+})
+// 重置Mock接口列表（清空所有）
+app.get('/mock/reset', (req, res) => {
+    const newState = {}
+    dbM.setState(newState)
+    res.send(dbM.getState())
+})
+
 app.listen('3001')

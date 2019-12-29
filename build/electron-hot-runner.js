@@ -1,24 +1,23 @@
 const { spawn, exec } = require('child_process') // 衍生子进程
-
-
-const child = exec('npm run dev --color')
-const child2 = exec('npm run start')
-const child4 = exec('node express/app.js', {
+const fs = require('fs')
+const webpack = exec('npm run dev --color')
+const electron = exec('npm run start')
+const app = exec('node express/app.js', {
     cwd: './'
 })
-child4.stdout.on('data', (data) => {
-    console.log('child4 is ', data)
-})
-child4.stderr.on('data', (data) => {
-    console.log('child4 is', data)
-})
+var logStream = fs.createWriteStream('d:/CodeProgram/electron-vue-topic/a.txt');
 
-child2.stdout.on('data', (data) => {
-    console.log('child2 is', data)
+// 测试文件写入
+//logStream.write("My first row\n");
+//logStream.write("My second row\n");
+
+process.stdout.write = process.stderr.write = logStream.write.bind(logStream);
+console.log('test1');
+console.error('test2 error');
+
+webpack.stdout.on('data', data => {
+    console.log(data)
 })
-child2.stderr.on('data', (data) => {
-    console.log('child2 error is', data)
-})
-child2.on('error', data => {
-    console.log('child2 error', data)
+webpack.stderr.on('data', data => {
+    console.log(data)
 })

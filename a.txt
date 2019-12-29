@@ -1,0 +1,97 @@
+test1
+test2 error
+
+> electron-vue-topic@1.0.0 dev D:\CodeProgram\electron-vue-topic
+> webpack-dev-server --config config/webpack.config.js --color
+
+
+[34mi[39m [90m｢wds｣[39m: Project is running at [1m[34mhttp://localhost:9972/[39m[22m
+
+[34mi[39m [90m｢wds｣[39m: webpack output is served from [1m[34m/[39m[22m
+
+[34mi[39m [90m｢wds｣[39m: Content not from webpack is served from [1m[34mD:\CodeProgram\electron-vue-topic[39m[22m
+
+[34mi[39m [90m｢wdm｣[39m: wait until bundle finished: /
+
+[34mi[39m [90m｢wdm｣[39m: Hash: [1mda24ff2d195f2bb77a49[39m[22m
+Version: webpack [1m4.41.2[39m[22m
+Time: [1m5386[39m[22mms
+Built at: 2019-12-29 [1m10:32:51 PM[39m[22m
+     [1mAsset[39m[22m       [1mSize[39m[22m  [1mChunks[39m[22m  [1m[39m[22m           [1m[39m[22m[1mChunk Names[39m[22m
+[1m[32mindex.html[39m[22m  286 bytes        [1m[39m[22m  [1m[32m[emitted][39m[22m  
+   [1m[32mmain.js[39m[22m   2.95 MiB    [1mmain[39m[22m  [1m[32m[emitted][39m[22m  main
+Entrypoint [1mmain[39m[22m = [1m[32mmain.js[39m[22m
+[1] [1mmulti (webpack)-dev-server/client?http://localhost:9972 (webpack)/hot/dev-server.js ./src/main.js[39m[22m 52 bytes {[1m[33mmain[39m[22m}[1m[32m [built][39m[22m
+[[1m./node_modules/vue/dist/vue.esm.js[39m[22m] 318 KiB {[1m[33mmain[39m[22m}[1m[32m [built][39m[22m
+[./node_modules/webpack-dev-server/client/index.js?http://localhost:9972] [1m(webpack)-dev-server/client?http://localhost:9972[39m[22m 4.29 KiB {[1m[33mmain[39m[22m}[1m[32m [built][39m[22m
+[./node_modules/webpack-dev-server/client/overlay.js] [1m(webpack)-dev-server/client/overlay.js[39m[22m 3.51 KiB {[1m[33mmain[39m[22m}[1m[32m [built][39m[22m
+[./node_modules/webpack-dev-server/client/socket.js] [1m(webpack)-dev-server/client/socket.js[39m[22m 1.53 KiB {[1m[33mmain[39m[22m}[1m[32m [built][39m[22m
+[./node_modules/webpack-dev-server/client/utils/createSocketUrl.js] [1m(webpack)-dev-server/client/utils/createSocketUrl.js[39m[22m 2.89 KiB {[1m[33mmain[39m[22m}[1m[32m [built][39m[22m
+[./node_modules/webpack-dev-server/client/utils/log.js] [1m(webpack)-dev-server/client/utils/log.js[39m[22m 964 bytes {[1m[33mmain[39m[22m}[1m[32m [built][39m[22m
+[./node_modules/webpack-dev-server/client/utils/reloadApp.js] [1m(webpack)-dev-server/client/utils/reloadApp.js[39m[22m 1.59 KiB {[1m[33mmain[39m[22m}[1m[32m [built][39m[22m
+[./node_modules/webpack-dev-server/client/utils/sendMessage.js] [1m(webpack)-dev-server/client/utils/sendMessage.js[39m[22m 402 bytes {[1m[33mmain[39m[22m}[1m[32m [built][39m[22m
+[./node_modules/webpack-dev-server/node_modules/strip-ansi/index.js] [1m(webpack)-dev-server/node_modules/strip-ansi/index.js[39m[22m 161 bytes {[1m[33mmain[39m[22m}[1m[32m [built][39m[22m
+[./node_modules/webpack/hot sync ^\.\/log$] [1m(webpack)/hot sync nonrecursive ^\.\/log$[39m[22m 170 bytes {[1m[33mmain[39m[22m}[1m[32m [built][39m[22m
+[./node_modules/webpack/hot/dev-server.js] [1m(webpack)/hot/dev-server.js[39m[22m 1.59 KiB {[1m[33mmain[39m[22m}[1m[32m [built][39m[22m
+[./node_modules/webpack/hot/emitter.js] [1m(webpack)/hot/emitter.js[39m[22m 75 bytes {[1m[33mmain[39m[22m}[1m[32m [built][39m[22m
+[./node_modules/webpack/hot/log-apply-result.js] [1m(webpack)/hot/log-apply-result.js[39m[22m 1.27 KiB {[1m[33mmain[39m[22m}[1m[32m [built][39m[22m
+[[1m./src/main.js[39m[22m] 207 bytes {[1m[33mmain[39m[22m}[1m[32m [built][39m[22m
+    + 110 hidden modules
+Child [1mhtml-webpack-plugin for "index.html"[39m[22m:
+     1 asset
+    Entrypoint [1mundefined[39m[22m = [1m[32mindex.html[39m[22m
+    [[1m./node_modules/html-webpack-plugin/lib/loader.js!./index.html[39m[22m] 462 bytes {[1m[33m0[39m[22m}[1m[32m [built][39m[22m
+    [[1m./node_modules/lodash/lodash.js[39m[22m] 528 KiB {[1m[33m0[39m[22m}[1m[32m [built][39m[22m
+    [./node_modules/webpack/buildin/global.js] [1m(webpack)/buildin/global.js[39m[22m 472 bytes {[1m[33m0[39m[22m}[1m[32m [built][39m[22m
+    [./node_modules/webpack/buildin/module.js] [1m(webpack)/buildin/module.js[39m[22m 497 bytes {[1m[33m0[39m[22m}[1m[32m [built][39m[22m
+
+[34mi[39m [90m｢wdm｣[39m: Compiled successfully.
+
+[34mi[39m [90m｢wdm｣[39m: Compiling...
+
+[34mi[39m [90m｢wdm｣[39m: Hash: [1m84dc3d04b1c884e63c00[39m[22m
+Version: webpack [1m4.41.2[39m[22m
+Time: [1m413[39m[22mms
+Built at: 2019-12-29 [1m10:37:16 PM[39m[22m
+                                  [1mAsset[39m[22m       [1mSize[39m[22m  [1mChunks[39m[22m  [1m[39m[22m                             [1m[39m[22m[1mChunk Names[39m[22m
+   [1m[32mda24ff2d195f2bb77a49.hot-update.json[39m[22m   46 bytes        [1m[39m[22m  [1m[32m[emitted] [immutable] [hmr][39m[22m  
+                             [1m[32mindex.html[39m[22m  286 bytes        [1m[39m[22m  [1m[32m[emitted][39m[22m                    
+[1m[32mmain.da24ff2d195f2bb77a49.hot-update.js[39m[22m   5.42 KiB    [1mmain[39m[22m  [1m[32m[emitted] [immutable] [hmr][39m[22m  main
+                                [1m[32mmain.js[39m[22m   2.95 MiB    [1mmain[39m[22m  [1m[32m[emitted][39m[22m                    main
+Entrypoint [1mmain[39m[22m = [1m[32mmain.js[39m[22m [1m[32mmain.da24ff2d195f2bb77a49.hot-update.js[39m[22m
+[./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js?!./src/components/Menu.vue?vue&type=style&index=0&id=9bcc0be2&lang=less&scoped=true&] [1m./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Menu.vue?vue&type=style&index=0&id=9bcc0be2&lang=less&scoped=true&[39m[22m 259 bytes {[1m[33mmain[39m[22m}[1m[32m [built][39m[22m
+[./node_modules/vue-loader/lib/index.js?!./src/components/Menu.vue?vue&type=script&lang=js&] [1m./node_modules/vue-loader/lib??vue-loader-options!./src/components/Menu.vue?vue&type=script&lang=js&[39m[22m 211 bytes {[1m[33mmain[39m[22m}[1m[32m [built][39m[22m
+[./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/components/Menu.vue?vue&type=template&id=9bcc0be2&scoped=true&] [1m./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Menu.vue?vue&type=template&id=9bcc0be2&scoped=true&[39m[22m 646 bytes {[1m[33mmain[39m[22m}[1m[32m [built][39m[22m
+[[1m./src/components/Menu.vue[39m[22m] 1.18 KiB {[1m[33mmain[39m[22m}[1m[32m [built][39m[22m
+    + 121 hidden modules
+Child [1mhtml-webpack-plugin for "index.html"[39m[22m:
+     1 asset
+    Entrypoint [1mundefined[39m[22m = [1m[32mindex.html[39m[22m
+       4 modules
+
+[34mi[39m [90m｢wdm｣[39m: Compiled successfully.
+
+[34mi[39m [90m｢wdm｣[39m: Compiling...
+
+[34mi[39m [90m｢wdm｣[39m: Hash: [1m75a3ee5cc7e0676ba4e7[39m[22m
+Version: webpack [1m4.41.2[39m[22m
+Time: [1m302[39m[22mms
+Built at: 2019-12-29 [1m10:37:19 PM[39m[22m
+                                  [1mAsset[39m[22m       [1mSize[39m[22m  [1mChunks[39m[22m  [1m[39m[22m                             [1m[39m[22m[1mChunk Names[39m[22m
+   [1m[32m84dc3d04b1c884e63c00.hot-update.json[39m[22m   46 bytes        [1m[39m[22m  [1m[32m[emitted] [immutable] [hmr][39m[22m  
+                             [1m[32mindex.html[39m[22m  286 bytes        [1m[39m[22m  [1m[32m[emitted][39m[22m                    
+[1m[32mmain.84dc3d04b1c884e63c00.hot-update.js[39m[22m   5.45 KiB    [1mmain[39m[22m  [1m[32m[emitted] [immutable] [hmr][39m[22m  main
+                                [1m[32mmain.js[39m[22m   2.95 MiB    [1mmain[39m[22m  [1m[32m[emitted][39m[22m                    main
+Entrypoint [1mmain[39m[22m = [1m[32mmain.js[39m[22m [1m[32mmain.84dc3d04b1c884e63c00.hot-update.js[39m[22m
+[./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js?!./src/components/Menu.vue?vue&type=style&index=0&id=9bcc0be2&lang=less&scoped=true&] [1m./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Menu.vue?vue&type=style&index=0&id=9bcc0be2&lang=less&scoped=true&[39m[22m 259 bytes {[1m[33mmain[39m[22m}[1m[32m [built][39m[22m
+[./node_modules/vue-loader/lib/index.js?!./src/components/Menu.vue?vue&type=script&lang=js&] [1m./node_modules/vue-loader/lib??vue-loader-options!./src/components/Menu.vue?vue&type=script&lang=js&[39m[22m 214 bytes {[1m[33mmain[39m[22m}[1m[32m [built][39m[22m
+[./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/components/Menu.vue?vue&type=template&id=9bcc0be2&scoped=true&] [1m./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Menu.vue?vue&type=template&id=9bcc0be2&scoped=true&[39m[22m 655 bytes {[1m[33mmain[39m[22m}[1m[32m [built][39m[22m
+[[1m./src/components/Menu.vue[39m[22m] 1.18 KiB {[1m[33mmain[39m[22m}[1m[32m [built][39m[22m
+    + 121 hidden modules
+Child [1mhtml-webpack-plugin for "index.html"[39m[22m:
+     1 asset
+    Entrypoint [1mundefined[39m[22m = [1m[32mindex.html[39m[22m
+       4 modules
+
+[34mi[39m [90m｢wdm｣[39m: Compiled successfully.
+

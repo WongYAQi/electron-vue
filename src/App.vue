@@ -1,19 +1,24 @@
 <template>
   <div class='container'>
-    <app-menu class='app-menu'></app-menu>
-    <div class='app-content'>
-      <router-view />
-    </div>
+    <aside class='aside'>
+      <app-menu></app-menu>
+    </aside>
+    <main>
+      <header>
+      </header>
+      <main class='app-content'>
+        <router-view />
+      </main>
+    </main>
   </div>
 </template>
-<script lang='ts'>
-import Vue from 'vue'
-import AppMenu from '@/components/Menu/Menu.vue'
-export default Vue.extend({
+<script>
+import AppMenu from '@/components/Menu.vue'
+export default {
   components: {
     AppMenu
   }
-})
+}
 </script>
 <style lang='less' scoped>
 .container{
@@ -28,5 +33,10 @@ export default Vue.extend({
 .app-content{
   width: calc(100% - 200px);
   margin-left: 200px;
+}
+.aside{
+  width: 100px;
+  height: 100vh;
+  background-color: #585757;
 }
 </style>
