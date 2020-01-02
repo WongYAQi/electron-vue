@@ -1,6 +1,12 @@
 <template>
-  <div class='inner-container' v-loading='loading'>
-    <el-tabs v-model='activeName' type='border-card' @tab-click='click' class='tab'>
+  <div class='inner-container'>
+    <header>
+      <w-tab>
+        <w-tab-item label='first'>asdasd</w-tab-item>
+        <w-tab-item label='seconday'>asdasdasdasdasd</w-tab-item>
+      </w-tab>
+    </header>
+    <!-- <el-tabs v-model='activeName' type='border-card' @tab-click='click' class='tab'>
       <el-tab-pane label='总览' name='all'></el-tab-pane>
       <el-tab-pane label='登录系统' name='auth'></el-tab-pane>
       <el-tab-pane label='平台系统' name='platform'></el-tab-pane>
@@ -8,10 +14,12 @@
     </el-tabs>
     <keep-alive>
       <component v-bind:is='componentName' v-bind='componentBind'></component>
-    </keep-alive>
+    </keep-alive> -->
   </div>
 </template>
 <script>
+import WTab from '@/components/Base/Tab/src/tab.vue'
+import WTabItem from '@/components/Base/Tab/src/tab-item.vue'
 import MyConsole from '@/components/RealtimeConsole/console.vue'
 import CoopwireIndex from '@/components/ProjectCoopwire/index.vue'
 import axios from 'axios'
@@ -21,7 +29,9 @@ export default {
     'CoopwireIndex': CoopwireIndex,
     'AuthConsole' : MyConsole,
     'PlatformConsole':MyConsole,
-    'EnterpriseConsole': MyConsole
+    'EnterpriseConsole': MyConsole,
+    'w-tab': WTab,
+    'w-tab-item': WTabItem
   },
   data ()  {
     return {
@@ -40,12 +50,12 @@ export default {
   created () {
     this.componentName = 'CoopwireIndex'
     this.loading = true
-    axios.get('/coopwire').then((res) => {
-      EventBus.$emit('defaultCoopwire')
-      return res
-    }).finally(() => {
-      this.loading = false
-    })
+    // axios.get('/coopwire').then((res) => {
+    //   EventBus.$emit('defaultCoopwire')
+    //   return res
+    // }).finally(() => {
+    //   this.loading = false
+    // })
   },
   methods: {
     click (item, event) {

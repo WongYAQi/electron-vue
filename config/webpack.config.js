@@ -19,13 +19,16 @@ module.exports = {
   devServer: {
     hot: true,
     port: '9972',
+    historyApiFallback: {
+      index: '/index.html'
+    }
     // proxy: {
     //   '/': 'http://localhost:3001'
     // }
   },
   devtool: 'inline-source-map',
   resolve: {
-    extensions: ['.vue', '.js', '.json'],
+    extensions: ['.ts', '.vue', '.js', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
