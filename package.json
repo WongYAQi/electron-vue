@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node ./build/test.js",
-    "dev": "webpack-dev-server --config config/webpack.config.js --color",
+    "dev": "webpack-dev-server --config config/webpack.config.js --color --env development",
     "server": "node ./build/electron-hot-runner.js",
     "start": "electron ./build/electron-runner.js",
     "express": "node ./express/app.js"
@@ -13,6 +13,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0",
+    "@vue/babel-preset-jsx": "^1.1.2",
     "axios": "^0.19.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.6",
@@ -34,6 +38,7 @@
     "tslint-config-standard": "^9.0.0",
     "tslint-loader": "^3.5.4",
     "typescript": "^3.7.3",
+    "url-loader": "^3.0.0",
     "vue": "^2.6.10",
     "vue-class-component": "^7.1.0",
     "vue-loader": "^15.7.2",
@@ -46,6 +51,7 @@
     "webpack-cli": "^3.3.10",
     "webpack-dev-middleware": "^3.7.2",
     "webpack-dev-server": "^3.9.0",
+    "webpack-merge": "^4.2.2",
     "ws": "^7.2.0",
     "xterm": "^4.2.0-vscode1",
     "xterm-addon-fit": "^0.3.0",

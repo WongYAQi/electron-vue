@@ -2,7 +2,7 @@
   <div class='inner-container'>
     <header>
       <w-tab>
-        <w-tab-item label='first'>asdasd</w-tab-item>
+        <w-tab-item label='first'>123</w-tab-item>
         <w-tab-item label='seconday'>asdasdasdasdasd</w-tab-item>
       </w-tab>
     </header>
