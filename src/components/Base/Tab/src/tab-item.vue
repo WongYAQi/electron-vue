@@ -8,22 +8,20 @@
 </template>
 <script>
 export default {
-  name: 'tab-item',
+  name: 'WTabItem',
   props: {
     label: {
       type: String,
       required: true
     },
+    // 这里用name作为唯一标记值
     name: String
+    // activeName: String // 这里不应该传入，因为这个tab-item是在外面作为slots传入的
+    // TODO: 这里要运用vnode.$parent 的特性，来获得父组件的特性
   },
-  data () {
-    return {
-      isChecked: false
-    }
-  },
-  methods: {
-    handleTabClick () {
-      this.isChecked = true
+  computed: {
+    isChecked () {
+      return this.name === this.$parent.activeName
     }
   }
 }

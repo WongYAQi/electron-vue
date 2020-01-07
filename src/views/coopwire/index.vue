@@ -1,20 +1,18 @@
 <template>
   <div class='inner-container'>
     <header>
-      <w-tab>
-        <w-tab-item label='first'>123</w-tab-item>
-        <w-tab-item label='seconday'>asdasdasdasdasd</w-tab-item>
+      <w-tab v-model='activeName'>
+        <w-tab-item label='总览' name='all'></w-tab-item>
+        <w-tab-item label='Auth' name='auth'></w-tab-item>
+        <w-tab-item label='Platform' name='platform'></w-tab-item>
+        <w-tab-item label='Enterprise' name='enterprise'></w-tab-item>
       </w-tab>
     </header>
-    <!-- <el-tabs v-model='activeName' type='border-card' @tab-click='click' class='tab'>
-      <el-tab-pane label='总览' name='all'></el-tab-pane>
-      <el-tab-pane label='登录系统' name='auth'></el-tab-pane>
-      <el-tab-pane label='平台系统' name='platform'></el-tab-pane>
-      <el-tab-pane label='企业系统' name='enterprise'></el-tab-pane>
-    </el-tabs>
-    <keep-alive>
-      <component v-bind:is='componentName' v-bind='componentBind'></component>
-    </keep-alive> -->
+    <main>
+      <keep-alive>
+        <component v-bind:is='componentName' v-bind='componentBind'></component>
+      </keep-alive>
+    </main>
   </div>
 </template>
 <script>
@@ -24,9 +22,21 @@ import MyConsole from '@/components/RealtimeConsole/console.vue'
 import CoopwireIndex from '@/components/ProjectCoopwire/index.vue'
 import axios from 'axios'
 import EventBus from '@/components/EventBus/EventBus.ts'
+const mapComponent = new Map([
+  ['all', 'CoopwireIndex'],
+  ['auth', 'AuthConsole'],
+  ['platform', 'PlatformConsole'],
+  ['enterprise', 'EnterpriseConsole']
+])
+const mapBind = new Map([
+  ['all', { key: 'index' } ],
+  ['auth', { id: '1', target: 'auth', command: 'dev:coopwire-auth', key: 'con1' }],
+  ['platform', { id: '2', target: 'platform', command: 'dev:coopwire-platform', key: 'con2' }],
+  ['enterprise', { id: '3', target: 'enterprise', command: 'dev:coopwire-enterprise', key: 'con3' }]
+])
 export default {
   components: {
-    'CoopwireIndex': CoopwireIndex,
+    CoopwireIndex,
     'AuthConsole' : MyConsole,
     'PlatformConsole':MyConsole,
     'EnterpriseConsole': MyConsole,
@@ -42,54 +52,19 @@ export default {
         { label: '平台系统', value: '3' },
         { label: '企业系统', value: '4' }
       ],
-      componentName:'',
-      componentBind:{},
       loading:false
+    }
+  },
+  computed: {
+    componentName () {
+      return mapComponent.get(this.activeName)
+    },
+    componentBind () {
+      return mapBind.get(this.activeName)
     }
   },
   created () {
     this.componentName = 'CoopwireIndex'
-    this.loading = true
-    // axios.get('/coopwire').then((res) => {
-    //   EventBus.$emit('defaultCoopwire')
-    //   return res
-    // }).finally(() => {
-    //   this.loading = false
-    // })
-  },
-  methods: {
-    click (item, event) {
-      if (item.name === 'all') {
-        this.componentName = 'CoopwireIndex'
-      } else if (item.name === 'auth') {
-        this.componentName = 'AuthConsole'
-        this.componentBind = {
-          id: '1',
-          target: 'auth',
-          command: 'dev:coopwire-auth',
-          key: 'con1'
-        }
-        EventBus.$emit('showConsole', '1')
-      } else if (item.name === 'platform') {
-        this.componentName = 'PlatformConsole'
-        this.componentBind = {
-          id: '2',
-          target: 'platform',
-          command: 'dev:coopwire-platform',
-          key: 'con2'
-        }
-        EventBus.$emit('showConsole', '2')
-      } else if (item.name === 'enterprise') {
-        this.componentName = 'EnterpriseConsole'
-        this.componentBind = {
-          id: '3',
-          target: 'enterprise',
-          command: 'dev:coopwire-enterprise',
-          key: 'con3'
-        }
-        EventBus.$emit('showConsole', '3')
-      }
-    }
   }
 }
 </script>

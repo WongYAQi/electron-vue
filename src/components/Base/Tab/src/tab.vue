@@ -9,15 +9,59 @@ export default {
     lazy: {
       type: Boolean,
       default: false
+    },
+    value: {
+      type: String
+    }
+  },
+  data () {
+    return {
+      activeName: this.value,
+      panes: []
     }
   },
   mounted () {
-    console.log(this.$slots)
+    this.calcPaneSlots()
+  },
+  methods: {
+    calcPaneSlots () {
+      let dom = this.$slots.default.filter(vnode => vnode.tag && vnode.componentOptions.Ctor.options.name === 'WTabItem')
+      let paneSlots = dom.map(({ componentInstance })=> componentInstance)
+      this.panes = paneSlots
+    },
+    handleTabClick (tab) {
+      // 触发对应id 的 dom 的is-checked 
+      console.log(tab)
+      this.activeName = tab.name
+      this.$emit('input', tab.name)
+      this.$emit('tab-click', tab)
+    }
   },
   render () {
-    let dom = this.$slots.default.map(item => {
-      // 在这个地方得到panes标题相关的数组对象，然后再单独渲染tab header
+    // Q1: 这里为什么要用 _l 来渲染 panes 呢？
+    // Q2: 为什么用上面calc方法中，渲染不出来呢？
+    // A2: 因为上面的方法中，在第一次render的时候还没有具体的componentInstance 实例，但是使用了this.panes，就会触发响应式变化，所以会再次触发渲染
+    let {
+      handleTabClick
+    } = this
+    let dom = this.panes.map(pane => {
+      return (
+        <div
+          class={{
+            'w-tab-item': true,
+            'is-checked': this.activeName === pane.name
+          }}
+          on-click={() => handleTabClick(pane)}
+        >
+          {pane.label}
+        </div>
+      )
     })
+    let headers = (
+      <div class='w-tab-header'>
+        {dom}
+      </div>
+    )
     const panes = (
       <div class='w-tab-pane'>
         {this.$slots.default}
@@ -34,6 +78,7 @@ export default {
     //tips：是不是在涉及到v-if,v-show的时候，尽量不要使用 jsx 呢？
     return (
       <div class='w-tab-container'>
+        {headers}
         {panes}
       </div>
     )
@@ -44,6 +89,25 @@ export default {
 <style lang='less' scoped>
 .w-tab-container{
   // position: relative;
-  display: flex;
+}
+.w-tab-item{
+  display: inline-block;
+  padding: 8px 16px;
+  line-height: 24px;
+  font-size: 14px;
+  transition: all .25s ease;
+  border-bottom: transparent;
+  cursor: pointer;
+  &:hover{
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    transition: all .25s ease;
+  }
+  &.is-checked{
+    border-bottom: 2px solid #fff;
+    transition: all .25s ease;
+  }
+}
+.w-tab-pane, .w-tab-header{
+  width: 100%;
 }
 </style>
