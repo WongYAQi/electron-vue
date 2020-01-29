@@ -1,0 +1,22 @@
+@import './colorbase.less';
+
+.entry-app{
+  background-color: @bg-color;
+}
+.entry-app .aside{
+  background-color: @bg-light-color;
+}
+.m-a{
+  background-color: @bg-light-color;
+  color: @fg-light-color;
+  & > svg{
+    fill: @fg-light-color;
+  }
+  &.is-active{
+    background-color: @ac-color;
+    color: @act-color;
+    & > *{
+      fill: @act-color;
+    }
+  }
+}

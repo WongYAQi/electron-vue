@@ -1,5 +1,5 @@
 <template>
-  <div class='container'>
+  <div class='entry-app container'>
     <aside class='aside'>
       <app-menu></app-menu>
     </aside>
@@ -26,19 +26,18 @@ export default {
 .container{
   width: 100%;
   height: 100%;
+  display: flex;
+  font-size: 14px;
 }
 .aside{
-  width: 100px;
-  float: left;
+  padding: 0 8px;
   height: 100vh;
-  background-color: #585757;
 }
 .main{
-  margin-left: 100px;
   height: 100vh;
-  background-color: #202124;
   padding: 0 10px;
   box-sizing: border-box;
+  flex: 1;
   header{
     height: 80px;
   }

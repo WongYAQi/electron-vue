@@ -1,0 +1,23 @@
+{
+  "id": "1622561",
+  "name": "electron",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "7531756",
+      "name": "接口",
+      "font_class": "jiekou",
+      "unicode": "e774",
+      "unicode_decimal": 59252
+    },
+    {
+      "icon_id": "11674925",
+      "name": "home-fill",
+      "font_class": "home-fill",
+      "unicode": "e7ae",
+      "unicode_decimal": 59310
+    }
+  ]
+}

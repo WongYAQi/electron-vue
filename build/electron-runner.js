@@ -10,5 +10,4 @@ function createWindow(){
     })
     win.loadURL(`http://localhost:9972/`)
 }
-
 app.on('ready', createWindow)

@@ -1,81 +1,75 @@
 <template>
-  <div class='inner-container'>
-    <header>
-      <w-tab v-model='activeName'>
-        <w-tab-item label='总览' name='all'></w-tab-item>
-        <w-tab-item label='Auth' name='auth'></w-tab-item>
-        <w-tab-item label='Platform' name='platform'></w-tab-item>
-        <w-tab-item label='Enterprise' name='enterprise'></w-tab-item>
-      </w-tab>
-    </header>
+  <div class='coopwire-container'>
     <main>
-      <keep-alive>
-        <component v-bind:is='componentName' v-bind='componentBind'></component>
-      </keep-alive>
-    </main>
+      <e-tab v-model='activeName'>
+        <e-tab-item label='总览' name='all'>
+          <e-section label='总览'>
+            <button @click='handleClick'>开启</button>
+          </e-section>
+        </e-tab-item>
+        <e-tab-item label='Auth' name='auth'>
+          <coop-console label='Auth' platform='auth' command='dev:coopwire-auth' ref='Auth'></coop-console>
+        </e-tab-item>
+        <e-tab-item label='Platform' name='platform'>
+          <coop-console label='Platform' platform='platform' command='dev:coopwire-platform' ref='Platform'></coop-console>
+        </e-tab-item>
+        <e-tab-item label='Enterprise' name='enterprise'>
+          <coop-console label='Enterprise' platform='enterprise' command='dev:coopwire-enterprise' ref='Enterprise'></coop-console>
+        </e-tab-item>
+      </e-tab>
+   </main>
   </div>
 </template>
+
 <script>
-import WTab from '@/components/Base/Tab/src/tab.vue'
-import WTabItem from '@/components/Base/Tab/src/tab-item.vue'
-import MyConsole from '@/components/RealtimeConsole/console.vue'
-import CoopwireIndex from '@/components/ProjectCoopwire/index.vue'
 import axios from 'axios'
 import EventBus from '@/components/EventBus/EventBus.ts'
-const mapComponent = new Map([
-  ['all', 'CoopwireIndex'],
-  ['auth', 'AuthConsole'],
-  ['platform', 'PlatformConsole'],
-  ['enterprise', 'EnterpriseConsole']
-])
-const mapBind = new Map([
-  ['all', { key: 'index' } ],
-  ['auth', { id: '1', target: 'auth', command: 'dev:coopwire-auth', key: 'con1' }],
-  ['platform', { id: '2', target: 'platform', command: 'dev:coopwire-platform', key: 'con2' }],
-  ['enterprise', { id: '3', target: 'enterprise', command: 'dev:coopwire-enterprise', key: 'con3' }]
-])
 export default {
   components: {
-    CoopwireIndex,
-    'AuthConsole' : MyConsole,
-    'PlatformConsole':MyConsole,
-    'EnterpriseConsole': MyConsole,
-    'w-tab': WTab,
-    'w-tab-item': WTabItem
+    'e-tab': () => import('@/components/Base/Tab/src/tab'),
+    'e-tab-item': () => import('@/components/Base/Tab/src/tab-item'),
+    'e-section': () => import('@/components/Base/section'),
+    'coop-console': () => import('@/components/Coopwire/console')
   },
   data ()  {
     return {
       activeName: 'all',
-      headers: [
-        { label: '序章', value: '1' },
-        { label: '登录系统', value: '2' },
-        { label: '平台系统', value: '3' },
-        { label: '企业系统', value: '4' }
-      ],
       loading:false
     }
   },
-  computed: {
-    componentName () {
-      return mapComponent.get(this.activeName)
-    },
-    componentBind () {
-      return mapBind.get(this.activeName)
+  methods: {
+    handleClick: async function () {
+      await this.$refs.Auth.dev()
+      await this.$refs.Platform.dev()
+      await this.$refs.Enterprise.dev()
     }
-  },
-  created () {
-    this.componentName = 'CoopwireIndex'
   }
 }
 </script>
 <style lang='less' scoped>
-.inner-container{
+.coopwire-container{
   height: 100%;
+  main{
+    width: 100%;
+    height: 100%;
+    .section-container{
+      min-height: 500px;
+    }
+  }
 }
 .tab{
   box-sizing: border-box;
   /deep/ .el-tabs__content{
     display: none;
   }
+}
+.console{
+  height: 500px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  background-color: #141414;
+  word-break: break-all;
+  white-space: pre-line;
+  overflow: auto;
 }
 </style>

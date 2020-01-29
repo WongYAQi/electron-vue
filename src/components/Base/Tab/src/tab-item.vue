@@ -28,4 +28,6 @@ export default {
 </script>
 
 <style lang='less' scoped>
+@import '../../../../style/colorbase.less';
+
 </style>

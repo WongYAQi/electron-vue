@@ -10,6 +10,7 @@ const adapterMock = new FileSync('express/data/mock.json')
 const dbM = low(adapterMock)
 const mockapp = require('./mockapp.js')
 const _ = require('lodash')
+const address = db.get('address').value()
 app.get('/coopwire', (req, res) => {
     let temp = db.read()
     res.send(temp)
@@ -26,7 +27,7 @@ app.ws('/coopwire/dev/:platform', function(ws, req){
         if (index < 0) return
         let subprocess = arrayProcess[index] 
         if (msg.startsWith('dev')) {
-            subprocess = new Dev(msg, db.get('address').value())
+            subprocess = new Dev(msg, address)
             subprocess.run(ws)
         } else if (msg === 'restart') {
             if (!subprocess) return

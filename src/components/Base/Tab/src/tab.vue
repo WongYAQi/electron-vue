@@ -1,8 +1,8 @@
 <script>
-/**
-  关于tab，目前看到两种思路：
-  1：顺序排列：div(label+div)，label在同一行，div在下方
-  2：并行排列：div(labels) + div(div) ，tab在同一div内，div在同一div内
+/** 使用方式
+  <w-tab v-model='activeName'>
+    <w-tab-item label='总览' name='all'></w-tab-item>
+  </w-tab>
  */
 export default {
   props: {
@@ -87,9 +87,8 @@ export default {
 </script>
 
 <style lang='less' scoped>
-.w-tab-container{
-  // position: relative;
-}
+@import '../../../../style/colorbase.less';
+
 .w-tab-item{
   display: inline-block;
   padding: 8px 16px;
@@ -97,6 +96,7 @@ export default {
   font-size: 14px;
   transition: all .25s ease;
   border-bottom: transparent;
+  color: @fg-light-color;
   cursor: pointer;
   &:hover{
     border-bottom: 2px solid rgba(255, 255, 255, 0.2);
@@ -105,6 +105,7 @@ export default {
   &.is-checked{
     border-bottom: 2px solid #fff;
     transition: all .25s ease;
+    color: @act-color;
   }
 }
 .w-tab-pane, .w-tab-header{
