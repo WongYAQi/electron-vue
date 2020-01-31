@@ -2,6 +2,8 @@ const app = require('express')()
 const expressWs = require('express-ws')(app)
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
+const fs = require('fs')
+const cors = require('cors')
 const adapter = new FileSync('express/data/coopwire.json')
 const Dev = require('../lib/Dev')
 const db = low(adapter)
@@ -11,6 +13,12 @@ const dbM = low(adapterMock)
 const mockapp = require('./mockapp.js')
 const _ = require('lodash')
 const address = db.get('address').value()
+const bodyParser = require('body-parser')
+
+console.log(db.get('address').value())
+app.use(cors())
+app.use(bodyParser.json())
+
 app.get('/coopwire', (req, res) => {
     let temp = db.read()
     res.send(temp)
@@ -38,16 +46,20 @@ app.ws('/coopwire/dev/:platform', function(ws, req){
         }
     })
 })
-app.post('/coopwire', (req, res) => {
-    db.set('address', 123)
-        .write()
-    res.send(db.read())
-})
 /**
 获取lowdb的存储数据 */
 app.get('/lowdb/:dictName', (req, res) => {
     let result = db.get(req.params.dictName).value()
     res.send(result)
+})
+
+app.post('/coopwire/lowdb/update', (req, res) => {
+  let data = req.body
+  Object.keys(data).forEach(key => {
+    db.set(key, data[key])
+      .write()
+  })
+  res.send(db.read())
 })
 
 /**
@@ -67,6 +79,31 @@ app.get('/mock/reset', (req, res) => {
     const newState = {}
     dbM.setState(newState)
     res.send(dbM.getState())
+})
+
+// 获取路径内文件夹与文件信息
+app.post('/path/show', (req, res) => {
+    let cPath = req.body.path
+    fs.readdir(cPath, { withFileTypes: true }, (err, results) => {
+      if (!results) {
+        res.send([])
+      } else {
+        let r = results.map(item => {
+            return {
+                name: item.name,
+                type: item.isFile() ? "file"
+                  : item.isDirectory()
+                    ? "directory" : ""
+            }
+        }).sort((p, n) => {
+          if (n.type === p.type) return p.name[0].charCodeAt() - n.name[0].charCodeAt()
+          else {
+            return n.type === 'directory' ? 1 : -1
+          }
+        })
+        res.send(r)
+      }
+    })
 })
 
 app.listen('3001')

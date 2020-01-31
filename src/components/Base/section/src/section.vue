@@ -11,20 +11,22 @@
 
 <script>
 export default {
+  name: 'ESection',
   props: {
     label: String
   }
 }
 </script>
 
-<style lang='less' scoped>
-@import '../../style/colorbase.less';
+<style lang='less'>
+@import '~@/style/colorbase.less';
 
 .section-container{
   border-color: transparent;
   border-width: 0;
   border-radius: 4px;
   background-color: @bg-dark-color;
+  padding: 10px 0;
   legend{
     padding: 0 16px;
   }

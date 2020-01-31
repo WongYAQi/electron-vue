@@ -10,7 +10,6 @@
 <script>
 export default {
   components: {
-    'e-section': () => import('@/components/Base/section')
   },
   props: {
     label: String,

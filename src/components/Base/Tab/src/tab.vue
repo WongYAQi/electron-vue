@@ -5,6 +5,7 @@
   </w-tab>
  */
 export default {
+  name: 'ETab',
   props: {
     lazy: {
       type: Boolean,
@@ -25,13 +26,11 @@ export default {
   },
   methods: {
     calcPaneSlots () {
-      let dom = this.$slots.default.filter(vnode => vnode.tag && vnode.componentOptions.Ctor.options.name === 'WTabItem')
+      let dom = this.$slots.default.filter(vnode => vnode.tag && vnode.componentOptions.Ctor.options.name === 'ETabItem')
       let paneSlots = dom.map(({ componentInstance })=> componentInstance)
       this.panes = paneSlots
     },
     handleTabClick (tab) {
-      // 触发对应id 的 dom 的is-checked 
-      console.log(tab)
       this.activeName = tab.name
       this.$emit('input', tab.name)
       this.$emit('tab-click', tab)
@@ -87,8 +86,7 @@ export default {
 </script>
 
 <style lang='less' scoped>
-@import '../../../../style/colorbase.less';
-
+@import '~@/style/colorbase.less';
 .w-tab-item{
   display: inline-block;
   padding: 8px 16px;

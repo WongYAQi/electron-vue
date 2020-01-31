@@ -10,6 +10,7 @@
 
 <script>
 export default {
+  name: 'EMenuItem',
   props: {
     name: String
   },
@@ -49,7 +50,6 @@ export default {
     }
     &.is-active{
       border-radius: 10%;
-      background-color: #ff5555;
       transition-property: border-radius ,background-color; 
       transition-duration: .5s;
     }

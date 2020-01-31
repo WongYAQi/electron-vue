@@ -10,12 +10,9 @@
 </template>
 <script>
 import MenuConfig from '@/script/router/menu.json'
-import EMenu from '@/components/Base/Menu/src/menu.vue'
-import EMenuItem from '@/components/Base/Menu/src/menu-item.vue'
 
 export default {
   components: {
-    EMenu, EMenuItem
   },
   data () {
     return {

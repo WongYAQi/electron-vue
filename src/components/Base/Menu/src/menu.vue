@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  name: 'EMenu',
   props: {
     menu: {
       type: Array

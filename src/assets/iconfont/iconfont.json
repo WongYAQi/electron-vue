@@ -6,6 +6,34 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "289955",
+      "name": "file",
+      "font_class": "file",
+      "unicode": "e6a8",
+      "unicode_decimal": 59048
+    },
+    {
+      "icon_id": "963325",
+      "name": "start up",
+      "font_class": "qidong",
+      "unicode": "e645",
+      "unicode_decimal": 58949
+    },
+    {
+      "icon_id": "1185421",
+      "name": "arrow-down",
+      "font_class": "arrowdown",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "1444550",
+      "name": "folder",
+      "font_class": "folder",
+      "unicode": "e748",
+      "unicode_decimal": 59208
+    },
+    {
       "icon_id": "7531756",
       "name": "接口",
       "font_class": "jiekou",
