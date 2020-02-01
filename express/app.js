@@ -25,26 +25,26 @@ app.get('/coopwire', (req, res) => {
 })
 
 app.ws('/coopwire/dev/:platform', function(ws, req){
-    ws.on('message', msg => {
-        let index = req.params.platform.includes('auth')
-            ? 0
-            : req.params.platform.includes('platform')
-                ? 1
-                : req.params.platform.includes('enterprise')
-                    ? 2 : -1
-        if (index < 0) return
-        let subprocess = arrayProcess[index] 
-        if (msg.startsWith('dev')) {
-            subprocess = new Dev(msg, address)
-            subprocess.run(ws)
-        } else if (msg === 'restart') {
-            if (!subprocess) return
-            subprocess.restart()
-        } else if (msg === 'stop') {
-            if (!subprocess) return
-            subprocess.stop()
-        }
-    })
+  ws.on('message', msg => {
+      let index = req.params.platform.includes('auth')
+          ? 0
+          : req.params.platform.includes('platform')
+              ? 1
+              : req.params.platform.includes('enterprise')
+                  ? 2 : -1
+      if (index < 0) return
+      let subprocess = arrayProcess[index] 
+      if (msg.startsWith('dev')) {
+          subprocess = new Dev(msg, address)
+          subprocess.run(ws)
+      } else if (msg === 'restart') {
+          if (!subprocess) return
+          subprocess.restart()
+      } else if (msg === 'stop') {
+          if (!subprocess) return
+          subprocess.stop()
+      }
+  })
 })
 /**
 获取lowdb的存储数据 */
@@ -68,12 +68,15 @@ app.get('/mock/api', (req, res) => {
     let result = _.keys(dbM.getState())
     res.send(dbM.getState())
 })
+
+// 启动Mock服务
 app.post('/mock/:port/start', (req, res) => {
     db.set('mockport', req.params.port)
         .write()
     let result = mockapp.listen(req.params.port)
     res.send(result)
 })
+
 // 重置Mock接口列表（清空所有）
 app.get('/mock/reset', (req, res) => {
     const newState = {}

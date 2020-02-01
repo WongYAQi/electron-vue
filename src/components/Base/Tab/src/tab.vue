@@ -87,6 +87,9 @@ export default {
 
 <style lang='less' scoped>
 @import '~@/style/colorbase.less';
+.w-tab-container{
+  margin-bottom: 18px;
+}
 .w-tab-item{
   display: inline-block;
   padding: 8px 16px;

@@ -2,15 +2,20 @@
   <button
     class='e-button'
     @click.stop='handleClick'
-    :disabled='disabled'
+    :disabled='disabled || loading'
     :class='[
       type ? "e-button-" + type : "",
       {
-        "is-round": round
+        "is-round": round,
+        "is-loading": loading,
+        "is-disabled": disabled || loading
       }
     ]'
   >
-    <span v-if='$slots.default'><slot></slot></span>
+    <span v-if='$slots.default'>
+      <i class='iconfont icon-loading' v-show='loading'/>
+      <slot></slot>
+    </span>
   </button>
 </template>
 
@@ -35,7 +40,8 @@ export default {
       default: 'default'
     },
     disabled: Boolean,
-    round: Boolean
+    round: Boolean,
+    loading: Boolean
   },
   methods: {
     handleClick (evt) {
@@ -45,8 +51,12 @@ export default {
 }
 </script>
 
-<style lang='less' scoped>
+<style lang='less'>
 @import '~@/style/colorbase.less';
+@keyframes ebuttonloading{
+  from { transform: rotate(0deg); }
+  to { transform: rotate(1turn); }
+}
 .e-button{
   height: 40px;
   padding: 8px 15px;
@@ -57,5 +67,18 @@ export default {
   color: @act-color;
   cursor: pointer;
   font-size: 14px;
+  &.is-loading{
+    & .icon-loading{
+      animation: ebuttonloading 2s linear infinite;
+    }
+  }
+  &:not(.is-loading):hover{
+    box-shadow: inset 0 0 0 2px @fg-color;
+    transition: all .2s ease;
+  }
+  &.is-disabled{
+    cursor: not-allowed;
+    background-color: @ac-d-color;
+  }
 }
 </style>

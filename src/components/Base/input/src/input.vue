@@ -40,7 +40,6 @@ export default {
   methods: {
     handleInput (evt) {
       if (evt.isComposing) return
-      console.log(evt)
       this.$emit('input', evt.target.value)
     },
     handleCompositionStart (val) {

@@ -1,21 +1,33 @@
 <template>
   <div class='inner-container'>
-    <p class='title'>Mock服务</p>
-    <el-form label-width='80px' class='form' :inline='true'>
-      <el-form-item label='Mock地址'>
-        <el-input v-model='form.mockport'></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button-group>
-          <el-button :type='isRuning ? "danger" : "primary"' :loading='loading' @click='open'>{{isRuning ? "关闭" : "启动"}}</el-button>
-          <el-button type='primary' @click='reset'>重置</el-button>
-        </el-button-group>
-      </el-form-item>
-    </el-form>
-    <main class='main'>
-      <ul>
-        <li v-for='item in apiList' :key='item'>{{item}}</li>
-      </ul>
+    <aside class='mock-aside'>
+      <e-tab v-model='activeTab'>
+        <e-tab-item label='Tags' name='Tags'></e-tab-item>
+        <e-tab-item label='Controllers' name='Controllers'></e-tab-item>
+      </e-tab>
+      <e-section :label='activeTab'>
+      </e-section>
+    </aside>
+    <main class='mock-container'>
+      <e-section label='Mock设置'>
+        <div class='mock-setting'>
+          <e-input v-model='form.mockport' placeholder='请输入Mock服务端口'></e-input>
+          <e-button @click='openMock'>
+            启动
+            <i class='iconfont icon-qidong' />
+          </e-button>
+        </div>
+      </e-section>
+      <e-section label='接口信息'>
+        <div class='mock-info'>
+          <e-select v-model='form.method'>
+            <e-option label='GET' value='GET'></e-option>
+            <e-option label='POST' value='POST'></e-option>
+          </e-select>
+          <e-input v-model='form.url' placeholder='请输入接口地址'></e-input>
+          <e-button @click='saveMock'>保存</e-button>
+        </div>
+      </e-section>
     </main>
   </div>
 </template>
@@ -24,8 +36,11 @@ import axios from 'axios'
 export default {
   data () {
     return {
+      activeTab: 'Tags',
       form: {
-        mockport: ''
+        mockport: '',
+        method: 'GET',
+        url: ''
       },
       apiList: [],
       loading: false,
@@ -41,8 +56,10 @@ export default {
     })
   },
   methods: {
-    open () {
-      // TODO: 将mock地址上传，作为端口启动express服务
+    saveMock () {
+
+    },
+    openMock () {
       this.loading = true
       axios.post(`/mock/${this.form.mockport}/start`).then(res => {
 
@@ -63,7 +80,27 @@ export default {
   height: 100%;
   overflow: auto;
 }
-.title{
-  margin: 0 auto;
+.mock-container{
+  margin-right: 300px;
+  .mock-info{
+    width: 100%;
+    display: inline-flex;
+    & > .e-input{
+      flex-grow: 1;
+      margin: 0 10px;
+    }
+  }
+  .mock-setting{
+    display: inline-flex;
+    & .e-input{
+      margin-right: 10px;
+    }
+  }
+}
+.mock-aside{
+  float: right;
+  width: 300px;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 </style>
