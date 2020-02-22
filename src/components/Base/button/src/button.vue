@@ -4,7 +4,7 @@
     @click.stop='handleClick'
     :disabled='disabled || loading'
     :class='[
-      type ? "e-button-" + type : "",
+      "e-button-" + (type || "default"),
       {
         "is-round": round,
         "is-loading": loading,
@@ -60,7 +60,6 @@ export default {
 .e-button{
   height: 40px;
   padding: 8px 15px;
-  background-color: @ac-color;
   border-radius: 4px;
   border-width: 0px;
   box-sizing: border-box;
@@ -79,6 +78,15 @@ export default {
   &.is-disabled{
     cursor: not-allowed;
     background-color: @ac-d-color;
+  }
+  &.e-button-default{
+    background-color: @ac-color;
+  }
+  &.e-button-danger{
+    background-color: @er-color;
+  }
+  & + .e-button{
+    margin-left: 10px;
   }
 }
 </style>

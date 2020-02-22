@@ -36,6 +36,9 @@
               开启
               <i class='iconfont icon-qidong' />
             </e-button>
+            <e-button @click='handleClose'>
+              关闭
+            </e-button>
           </e-section>
         </e-tab-item>
         <e-tab-item label='Auth' name='auth'>
@@ -117,6 +120,9 @@ export default {
         this.path += '\\' + item.name
       }
       this.getDirectories()
+    },
+    handleClose () {
+      this.$refs.Auth.close()
     },
     handleSelectDisk (val) {
       this.path = ''

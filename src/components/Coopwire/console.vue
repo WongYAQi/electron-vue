@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import axios from '@/script/util/axios'
 export default {
   components: {
   },
@@ -19,7 +20,8 @@ export default {
   data () {
     return {
       content: '',
-      tempContent: ''
+      tempContent: '',
+      isAllTransfered: false
     }
   },
   methods: {
@@ -29,6 +31,12 @@ export default {
         this.tempContent = 'loading...'
         let ws = new WebSocket(`ws://localhost:3001/coopwire/dev/${this.platform}`)
         ws.onmessage = (message) => {
+          if (this.isAllTransfered && !!message.data.replace(/\s/g, '')) {
+            this.content = ''
+          }
+          if (message.data.indexOf('<s> [webpack.Progress] 100%') > -1) {
+            this.isAllTransfered = true
+          }
           if (message.data.startsWith('<s>')) {
             this.tempContent = message.data
           } else {
@@ -39,6 +47,11 @@ export default {
         ws.onopen = (event) => {
           ws.send(this.command)
         }
+      })
+    },
+    close () {
+      return axios.post(`/coopwire/dev/${this.platform}/close`).then(res => {
+        console.log(res)
       })
     }
   }

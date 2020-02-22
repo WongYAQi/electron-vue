@@ -16,6 +16,9 @@
             启动
             <i class='iconfont icon-qidong' />
           </e-button>
+          <e-button type='danger' @click='clear'>
+            清除
+          </e-button>
         </div>
       </e-section>
       <e-section label='接口信息'>
@@ -27,12 +30,15 @@
           <e-input v-model='form.url' placeholder='请输入接口地址'></e-input>
           <e-button @click='saveMock'>保存</e-button>
         </div>
+        <div class='mock-info'>
+          <e-input v-model='form.response' type='textarea' :rows='4'></e-input>
+        </div>
       </e-section>
     </main>
   </div>
 </template>
 <script>
-import axios from 'axios'
+import axios from '@/script/util/axios'
 export default {
   data () {
     return {
@@ -40,6 +46,7 @@ export default {
       form: {
         mockport: '',
         method: 'GET',
+        response: '',
         url: ''
       },
       apiList: [],
@@ -48,21 +55,25 @@ export default {
     }
   },
   created () {
-    axios.get('lowdb/mockport').then(res => {
+    axios.get('/lowdb/mockport').then(res => {
       this.form.mockport = parseInt(res.data)
     })
-    axios.get('mock/api').then(res => {
+    axios.get('/mock/api').then(res => {
       this.apiList.push(...Object.keys(res.data))
     })
   },
   methods: {
+    clear () {
+      axios.get('/mock/clear').then(res => {
+        
+      })
+    },
     saveMock () {
 
     },
     openMock () {
       this.loading = true
       axios.post(`/mock/${this.form.mockport}/start`).then(res => {
-
       }).finally(() => {
         this.loading = false
       })
@@ -88,6 +99,9 @@ export default {
     & > .e-input{
       flex-grow: 1;
       margin: 0 10px;
+    }
+    & + .mock-info{
+      margin-top: 18px;
     }
   }
   .mock-setting{

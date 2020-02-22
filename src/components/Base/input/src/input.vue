@@ -8,11 +8,26 @@
       :placeholder='placeholder'
       :readonly='readonly'
       :disabled='disabled'
+      v-if='type === undefined'
       @input='handleInput'
       @compositionstart='handleCompositionStart'
       @compositionupdate='handleCompositionUpdate'
       @compositionend='handleCompositionEnd'
     >
+    <textarea v-else-if='type === "textarea"'
+      ref='Textarea'
+      class='e-textarea__inner'
+      :value='value'
+      :placeholder='placeholder'
+      :rows='rows'
+      :readonly='readonly'
+      :disabled='disabled'
+      @input='handleInput'
+      @compositionstart='handleCompositionStart'
+      @compositionupdate='handleCompositionUpdate'
+      @compositionend='handleCompositionEnd'
+    >
+    </textarea>
     <span v-if='$slots.suffix' class='e-input-suffix'>
       <span class='e-input-suffix__inner'>
         <slot name='suffix'></slot>
@@ -23,6 +38,10 @@
 </template>
 
 <script>
+/**
+  1. 对于textarea的处理：tab操作的处理
+ */
+import { trick_textarea_dom } from '@/script/util/trick'
 export default {
   name: 'EInput',
   props: {
@@ -30,12 +49,17 @@ export default {
     placeholder: String,
     readonly: Boolean,
     disabled: Boolean,
-    suffixIcon: String
+    suffixIcon: String,
+    type: String,
+    rows: Number
   },
   data () {
     return {
       isComposing: false
     }
+  },
+  mounted () {
+    trick_textarea_dom(this.$refs.Textarea)
   },
   methods: {
     handleInput (evt) {
@@ -77,7 +101,24 @@ export default {
   font-size: 14px;
   line-height: 1;
   outline: none;
-  cursor: pointer;
+  cursor: text;
+  &:hover, &:focus{
+    border: 1px solid @fg-color;
+  }
+}
+.e-textarea__inner{
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  background-color: @bg-dark-color;
+  border-width: 1px;
+  border-color: transparent;
+  border-radius: 4px;
+  color: inherit;
+  font-size: 14px;
+  line-height: 1;
+  outline: none;
+  cursor: text;
   &:hover, &:focus{
     border: 1px solid @fg-color;
   }
