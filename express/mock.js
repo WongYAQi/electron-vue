@@ -23,6 +23,16 @@ router.get('/mock/clear', (req, res) => {
     res.send(dbM.getState())
 })
 
+router.post('/mock/save', (req, res) => {
+    try{
+        let { body } = req
+        dbM.set(body.url, body).write()
+        res.send(true)
+    } catch(error) {
+        res.send(error)
+    }
+})
+
 // 启动Mock服务
 // router.post('/mock/:port/start', (req, res) => {
 //     db.set('mockport', req.params.port)

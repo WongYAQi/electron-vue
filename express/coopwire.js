@@ -5,6 +5,7 @@ const FileSync = require('lowdb/adapters/FileSync')
 const adapter = new FileSync('express/data/coopwire.json')
 const Dev = require('../lib/Dev')
 const db = low(adapter)
+const address = db.get('address').value()
 const arrayProcess = new Array(3)
 
 router.get('/coopwire', (req, res) => {

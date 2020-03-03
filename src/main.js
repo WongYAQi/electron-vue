@@ -6,6 +6,7 @@ import './style/color.less'
 import './style/common.less'
 import './assets/iconfont/iconfont.css'
 import Base from '@/components/Base/index'
+import '@/components/Base/style/index.less'
 
 Vue.use(Base)
 

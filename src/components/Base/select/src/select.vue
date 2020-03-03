@@ -69,10 +69,7 @@ export default {
       })
     },
     setSelected (val) {
-      console.log(JSON.parse(JSON.stringify(this.options)))
-      console.log(val)
       let ops = this.options.filter(props =>  props.value === val)
-      console.log(ops)
       if (ops.length) {
         this.selectLabel = ops[0].label
       }

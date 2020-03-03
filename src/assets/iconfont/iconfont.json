@@ -6,25 +6,25 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "5776861",
+      "name": "plus",
+      "font_class": "plus",
+      "unicode": "e653",
+      "unicode_decimal": 58963
+    },
+    {
+      "icon_id": "8827222",
+      "name": "loading",
+      "font_class": "loading",
+      "unicode": "e93d",
+      "unicode_decimal": 59709
+    },
+    {
       "icon_id": "289955",
       "name": "file",
       "font_class": "file",
       "unicode": "e6a8",
       "unicode_decimal": 59048
-    },
-    {
-      "icon_id": "963325",
-      "name": "start up",
-      "font_class": "qidong",
-      "unicode": "e645",
-      "unicode_decimal": 58949
-    },
-    {
-      "icon_id": "1185421",
-      "name": "arrow-down",
-      "font_class": "arrowdown",
-      "unicode": "e601",
-      "unicode_decimal": 58881
     },
     {
       "icon_id": "1444550",
@@ -34,18 +34,25 @@
       "unicode_decimal": 59208
     },
     {
+      "icon_id": "1185421",
+      "name": "arrow-down",
+      "font_class": "arrowdown",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "963325",
+      "name": "start up",
+      "font_class": "qidong",
+      "unicode": "e645",
+      "unicode_decimal": 58949
+    },
+    {
       "icon_id": "7531756",
       "name": "接口",
       "font_class": "jiekou",
       "unicode": "e774",
       "unicode_decimal": 59252
-    },
-    {
-      "icon_id": "8827222",
-      "name": "loading",
-      "font_class": "loading",
-      "unicode": "e93d",
-      "unicode_decimal": 59709
     },
     {
       "icon_id": "11674925",

@@ -7,6 +7,7 @@ import ESection from './section/index'
 import ESelect from './select/index'
 import ETab from './tab/index'
 import ETabItem from './tab-item/index'
+import './style/index.less'
 
 const components = [
   EButton,

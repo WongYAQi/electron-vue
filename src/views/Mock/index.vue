@@ -1,13 +1,5 @@
 <template>
   <div class='inner-container'>
-    <aside class='mock-aside'>
-      <e-tab v-model='activeTab'>
-        <e-tab-item label='Tags' name='Tags'></e-tab-item>
-        <e-tab-item label='Controllers' name='Controllers'></e-tab-item>
-      </e-tab>
-      <e-section :label='activeTab'>
-      </e-section>
-    </aside>
     <main class='mock-container'>
       <e-section label='Mock设置'>
         <div class='mock-setting'>
@@ -31,10 +23,25 @@
           <e-button @click='saveMock'>保存</e-button>
         </div>
         <div class='mock-info'>
-          <e-input v-model='form.response' type='textarea' :rows='4'></e-input>
+          <span>Label: 
+            <e-input v-model='tempTag' v-show='visibleTag' />
+            <e-button placement='Please add api tag' icon='iconfont icon-plus' />
+          </span>
+        </div>
+        <div class='mock-info'>
+          <e-input v-model='form.response' type='textarea' :rows='4' class='textarea'></e-input>
         </div>
       </e-section>
     </main>
+    <aside class='mock-aside'>
+      <e-tab v-model='activeTab'>
+        <e-tab-item label='Tags' name='Tags'></e-tab-item>
+        <e-tab-item label='Controllers' name='Controllers'></e-tab-item>
+      </e-tab>
+      <e-section :label='activeTab'>
+        
+      </e-section>
+    </aside>
   </div>
 </template>
 <script>
@@ -47,11 +54,14 @@ export default {
         mockport: '',
         method: 'GET',
         response: '',
-        url: ''
+        url: '',
+        tags: []
       },
       apiList: [],
       loading: false,
-      isRuning: false
+      isRuning: false,
+      visibleTag: false,
+      tempTag: ''
     }
   },
   created () {
@@ -69,7 +79,9 @@ export default {
       })
     },
     saveMock () {
-
+      let data = {...this.form}
+      data.response = JSON.parse(data.response)
+      axios.post('/mock/save', data)
     },
     openMock () {
       this.loading = true
@@ -90,18 +102,20 @@ export default {
 .inner-container{
   height: 100%;
   overflow: auto;
+  display: flex;
 }
 .mock-container{
-  margin-right: 300px;
+  flex: 1;
   .mock-info{
     width: 100%;
     display: inline-flex;
+    margin-bottom: 10px;
     & > .e-input{
       flex-grow: 1;
       margin: 0 10px;
     }
-    & + .mock-info{
-      margin-top: 18px;
+    .textarea{
+      margin-bottom: 18px;
     }
   }
   .mock-setting{
@@ -112,8 +126,8 @@ export default {
   }
 }
 .mock-aside{
-  float: right;
   width: 300px;
+  flex: 0 1 auto;
   padding: 0 10px;
   box-sizing: border-box;
 }

@@ -1,4 +1,15 @@
 {
-  "/rest/g/biz/account": {},
-  "/favicon.ico": {}
+  "/rest/g/account": {
+    "mockport": 3002,
+    "method": "GET",
+    "response": {
+      "code": 0,
+      "msg": "操作成功",
+      "results": {
+        "visible": 2
+      }
+    },
+    "url": "/rest/g/account",
+    "tags": []
+  }
 }

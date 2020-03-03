@@ -10,6 +10,7 @@
       :disabled='disabled'
       v-if='type === undefined'
       @input='handleInput'
+      @blur='handleBlur'
       @compositionstart='handleCompositionStart'
       @compositionupdate='handleCompositionUpdate'
       @compositionend='handleCompositionEnd'
@@ -45,7 +46,7 @@ import { trick_textarea_dom } from '@/script/util/trick'
 export default {
   name: 'EInput',
   props: {
-    value: String,
+    value: [String, Number],
     placeholder: String,
     readonly: Boolean,
     disabled: Boolean,
@@ -59,9 +60,14 @@ export default {
     }
   },
   mounted () {
-    trick_textarea_dom(this.$refs.Textarea)
+    if (this.type === 'textarea') {
+      trick_textarea_dom(this.$refs.Textarea)
+    }
   },
   methods: {
+    handleBlur () {
+      this.$emit('change', this.value)
+    },
     handleInput (evt) {
       if (evt.isComposing) return
       this.$emit('input', evt.target.value)
@@ -85,12 +91,11 @@ export default {
 @import '~@/style/colorbase.less';
 .e-input{
   position: relative;
-  height: 40px;
   color: @fg-light-color;
 }
 .e-input__inner{
   width: 100%;
-  height: 100%;
+  height: 40px;
   padding: 8px;
   box-sizing: border-box;
   background-color: @bg-dark-color;
@@ -108,6 +113,7 @@ export default {
 }
 .e-textarea__inner{
   width: 100%;
+  resize: vertical;
   padding: 8px;
   box-sizing: border-box;
   background-color: @bg-dark-color;

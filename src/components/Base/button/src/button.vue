@@ -1,6 +1,7 @@
 <template>
   <button
     class='e-button'
+    ref='reference'
     @click.stop='handleClick'
     :disabled='disabled || loading'
     :class='[
@@ -8,14 +9,17 @@
       {
         "is-round": round,
         "is-loading": loading,
-        "is-disabled": disabled || loading
+        "is-disabled": disabled || loading,
+        "is-icon": isIcon
       }
     ]'
   >
-    <span v-if='$slots.default'>
+    <span v-if='$slots.default && !isIcon'>
       <i class='iconfont icon-loading' v-show='loading'/>
       <slot></slot>
     </span>
+      <i v-else-if='isIcon' :class='icon'>
+    </i>
   </button>
 </template>
 
@@ -31,7 +35,9 @@
   1. 圆角图标
   2. 按钮组
   3. 按钮颜色分类
+  4. icon button
  */
+import Popper from '../../util/popper'
 export default {
   name: 'EButton',
   props: {
@@ -41,7 +47,48 @@ export default {
     },
     disabled: Boolean,
     round: Boolean,
-    loading: Boolean
+    loading: Boolean,
+    icon: String,
+    placement: String
+  },
+  data () {
+    return {
+      isInPop: false
+    }
+  },
+  computed: {
+    isIcon () {
+      return !!this.icon
+    }
+  },
+  mounted () {
+    if (this.placement) {
+      let pop = Popper._d(this.placement, this._uid)
+      this.$refs.reference.addEventListener('mouseenter', evt => {
+        this.isInPop = true
+        document.body.appendChild(pop)
+        Popper._c(this.$refs.reference, pop, {
+          placement: 'bottom'
+        })
+      })
+      pop.addEventListener('mouseenter', event => {
+        this.isInPop = true
+      })
+      pop.addEventListener('mouseleave', event => {
+        this.isInPop = false
+        setTimeout(() => {
+          if (this.isInPop) return
+          document.body.removeChild(pop)
+        }, 500);
+      })
+      this.$refs.reference.addEventListener('mouseleave', evt => {
+        this.isInPop = false
+        setTimeout(() => {
+          if (this.isInPop) return
+          document.body.removeChild(pop)
+        }, 1000)
+      })
+    }
   },
   methods: {
     handleClick (evt) {
@@ -66,6 +113,7 @@ export default {
   color: @act-color;
   cursor: pointer;
   font-size: 14px;
+  outline: none;
   &.is-loading{
     & .icon-loading{
       animation: ebuttonloading 2s linear infinite;
@@ -87,6 +135,16 @@ export default {
   }
   & + .e-button{
     margin-left: 10px;
+  }
+}
+.e-button.is-icon{
+  background-color: transparent;
+  color: @fg-light-color;
+  transition: all .5s ease;
+  &:hover{
+    color: @act-color;
+    box-shadow: none;
+    transition: all .5s ease;
   }
 }
 </style>
