@@ -1,4 +1,7 @@
 {
+  "build": {
+    "appId": "wongyaqi"
+  },
   "name": "electron-vue-topic",
   "version": "0.0.1",
   "description": "electron + vue + express + lowdb",
@@ -10,7 +13,10 @@
     "start": "electron ./build/electron-runner.js",
     "build": "webpack --config ./config/webpack.config.prod.js",
     "estart": "electron main.js",
-    "express": "node ./express/app.js"
+    "express": "node ./express/app.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "package": "electron-packager ./ myapp  --platform=win32 --arch=x64 --electron-version 8.1.0 --overwrite "
   },
   "author": "WongYAQi",
   "license": "ISC",
@@ -29,7 +35,6 @@
     "core-js": "^3.4.8",
     "cors": "^2.8.5",
     "css-loader": "^3.2.0",
-    "electron": "^8.1.0",
     "element-ui": "^2.13.0",
     "express": "^4.17.1",
     "express-ws": "^4.0.0",
@@ -61,12 +66,11 @@
     "webpack-dev-middleware": "^3.7.2",
     "webpack-dev-server": "^3.9.0",
     "webpack-merge": "^4.2.2",
-    "ws": "^7.2.0",
-    "xterm": "^4.2.0-vscode1",
-    "xterm-addon-fit": "^0.3.0",
-    "xterm-addon-web-links": "^0.2.1"
+    "ws": "^7.2.0"
   },
   "devDependencies": {
-    "electron-builder": "^22.3.6"
+    "electron": "^8.1.0",
+    "electron-builder": "^22.3.6",
+    "electron-packager": "^14.2.1"
   }
 }

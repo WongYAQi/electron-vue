@@ -11,7 +11,7 @@ function createWindow () {
       preload: path.join(app.getAppPath(), 'preload.js')
     }
   })
-  win.loadFile('./dist/index.html')
+  win.loadFile('./dist.vue/index.html')
   win.on('close', event => {
     func()
   })
