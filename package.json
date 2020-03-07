@@ -3,7 +3,7 @@
     "appId": "wongyaqi"
   },
   "name": "electron-vue-topic",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "electron + vue + express + lowdb",
   "main": "index.js",
   "scripts": {
