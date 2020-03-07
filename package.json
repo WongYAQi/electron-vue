@@ -5,7 +5,7 @@
   "name": "electron-vue-topic",
   "version": "0.0.2",
   "description": "electron + vue + express + lowdb",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "test": "node ./build/test.js",
     "dev": "webpack-dev-server --config config/webpack.config.js --color --env development",
