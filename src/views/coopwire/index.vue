@@ -58,9 +58,10 @@
 <script>
 import axios from '@/script/util/axios'
 import EventBus from '@/components/EventBus/EventBus.ts'
+import CoopConsole from '@/components/Coopwire/console'
 export default {
   components: {
-    'coop-console': () => import('@/components/Coopwire/console')
+    CoopConsole
   },
   data ()  {
     return {

@@ -6,8 +6,6 @@ const electron = exec('npm run start')
 const app = exec('node express/app.js', {
     cwd: './'
 })
-var logStream = fs.createWriteStream('d:/CodeProgram/electron-vue-topic/a.txt');
-process.stdout.write = process.stderr.write = logStream.write.bind(logStream);
 webpack.stdout.on('data', data => {
     console.log(data)
 })
