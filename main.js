@@ -19,6 +19,5 @@ function createWindow () {
 
 app.whenReady().then(createWindow)
 app.on('window-all-closed', event => {
-  console.log(func)
   func()
 })
